@@ -1,8 +1,8 @@
 'use strict';
 
 // Data needed for a later exercise
-const flights =
-  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
+// const flights =
+//   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
 // Data needed for first part of the section
 const restaurant = {
@@ -104,7 +104,7 @@ const restaurant = {
 // // 7
 // console.log(team1, draw, team2);
 
-// team1 < team2 && console.log('Team 1 is more likely to win'); 
+// team1 < team2 && console.log('Team 1 is more likely to win');
 
 // Challenge 2
 
@@ -174,14 +174,12 @@ const restaurant = {
 
 // console.log(acumm);
 
-// // 3 
+// // 3
 // for (const [team, odd] of Object.entries(game.odds)) {
 //   console.log(`Odd of ${game[team] ? `wining ${game[team]}` : 'draw'}: ${odd}`);
 // }
 
 // // 4
-
-
 
 // const scorers = {};
 // for (const player of game.scored) {
@@ -208,37 +206,154 @@ Let's continue with our football betting app! This time, we have a map with a lo
 GOOD LUCK 😀
 */
 
-const gameEvents = new Map([
-  [17, '⚽️ GOAL'],
-  [36, '🔁 Substitution'],
-  [47, '⚽️ GOAL'],
-  [61, '🔁 Substitution'],
-  [64, '🔶 Yellow card'],
-  [69, '🔴 Red card'],
-  [70, '🔁 Substitution'],
-  [72, '🔁 Substitution'],
-  [76, '⚽️ GOAL'],
-  [80, '⚽️ GOAL'],
-  [92, '🔶 Yellow card'],
-]);
+// const gameEvents = new Map([
+//   [17, '⚽️ GOAL'],
+//   [36, '🔁 Substitution'],
+//   [47, '⚽️ GOAL'],
+//   [61, '🔁 Substitution'],
+//   [64, '🔶 Yellow card'],
+//   [69, '🔴 Red card'],
+//   [70, '🔁 Substitution'],
+//   [72, '🔁 Substitution'],
+//   [76, '⚽️ GOAL'],
+//   [80, '⚽️ GOAL'],
+//   [92, '🔶 Yellow card'],
+// ]);
 
-// 1
+// // 1
 
-const events = [...new Set(gameEvents.values())];
-console.log(events);
+// const events = [...new Set(gameEvents.values())];
+// console.log(events);
 
-// 2
+// // 2
 
-gameEvents.delete(64)
-console.log(gameEvents)
+// gameEvents.delete(64)
+// console.log(gameEvents)
 
-// 3
+// // 3
 
-const average = 90 / gameEvents.size
-console.log(`An event happened, on average, every ${average} minutes`)
+// const average = 90 / gameEvents.size
+// console.log(`An event happened, on average, every ${average} minutes`)
 
-// 4
+// // 4
 
-for(const [minute, event] of gameEvents) {
-  console.log(`[${minute <= 45 ? 'FIRST': 'SECOND'} HALF] ${minute}: ${event}`)
+// for(const [minute, event] of gameEvents) {
+//   console.log(`[${minute <= 45 ? 'FIRST': 'SECOND'} HALF] ${minute}: ${event}`)
+// }
+
+// const checkMiddleSeat = seat => {
+//   const seatPosition = seat.slice(-1);
+//   if (
+//     seatPosition.toLowerCase() === 'b' ||
+//     seatPosition.toLowerCase() === 'e'
+//   ) {
+//     return true;
+//   }
+//   return false;
+// };
+
+// console.log(checkMiddleSeat('11b'));
+
+// Lecture 122
+// Fix capitalization in name
+// const passenger = 'jOnAs';
+// const passengerLowerCase = passenger.toLowerCase();
+// const passengerCorrect = passenger[0].toUpperCase() + passengerLowerCase.slice(1);
+// console.log(passengerCorrect)
+// const passengerOk = passenger[0].toUpperCase() + passenger.slice(1).toLowerCase();
+// console.log(passengerOk)
+
+// const price = '$34$d'
+// console.log(price.replace(/$/g, 'k'))
+// console.log(price.endsWith('D'))
+
+// const capitalizeName = name => {
+//   const names = name.split(' ');
+//   let namesArray = [];
+//   for (const n of names) {
+//     namesArray.push(n.replace(n[0], n[0].toUpperCase()))
+//   }
+//   console.log(namesArray.join(' '))
+// };
+
+// capitalizeName('nicolas alejandro roldan ucedo');
+
+// const maskCreditCard = (number) => {
+//   const str = String(number);
+//   return str.slice(-4).padStart(str.length, '*')
+// }
+
+// console.log(maskCreditCard(9994241))
+
+///////////////////////////////////////
+// Coding Challenge #4
+
+/* 
+Write a program that receives a list of variable names written in underscore_case and convert them to camelCase.
+
+The input will come from a textarea inserted into the DOM (see code below), and conversion will happen when the button is pressed.
+
+THIS TEST DATA (pasted to textarea)
+underscore_case
+ first_name
+Some_Variable 
+  calculate_AGE
+delayed_departure
+
+SHOULD PRODUCE THIS OUTPUT (5 separate console.log outputs)
+underscoreCase      ✅
+firstName           ✅✅
+someVariable        ✅✅✅
+calculateAge        ✅✅✅✅
+delayedDeparture    ✅✅✅✅✅
+
+HINT 1: Remember which character defines a new line in the textarea 😉
+HINT 2: The solution only needs to work for a variable made out of 2 words, like a_b
+HINT 3: Start without worrying about the ✅. Tackle that only after you have the variable name conversion working 😉
+HINT 4: This challenge is difficult on purpose, so start watching the solution in case you're stuck. Then pause and continue!
+
+Afterwards, test with your own test data!
+
+GOOD LUCK 😀
+*/
+
+// document.body.append(document.createElement('textarea'));
+// document.body.append(document.createElement('button'));
+
+// document.querySelector('button').addEventListener('click', () => {
+//   const normalizedArray = document.querySelector('textarea').value.split('\n');
+//   for (const [i, element] of normalizedArray.entries()) {
+//     const elementTrimmed = element.trim();
+//     const elementLowerCase = elementTrimmed.toLowerCase();
+//     const [first, second] = elementLowerCase.split('_');
+//     const addEl = [first, second[0].toUpperCase() + second.slice(1)]
+//       .join('')
+//       .padEnd(20);
+//     console.log([addEl, '✅'.repeat(i + 1)].join(''));
+//   }
+// });
+
+///////////////////////////////////////
+// String Methods Practice
+
+const flights =
+  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
+
+// 🔴 Delayed Departure from FAO to TXL (11h25)
+//              Arrival from BRU to FAO (11h45)
+//   🔴 Delayed Arrival from HEL to FAO (12h05)
+//            Departure from FAO to LIS (12h30)
+const getCode = str => str.slice(0, 3).toUpperCase();
+
+const formatFlightInfo = (info) => {
+  const flightsArray = info.split('+');
+  
+  for (const flight of flightsArray) {
+    let [status, origin, destination, time] = flight.split(';');
+    status = status.replaceAll('_', ' ').replace('Delayed', '🔴 Delayed');
+    time = `(${time})`.replace(':', 'h');
+    console.log(`${status} from ${getCode(origin)} to ${getCode(destination)} ${time}`.padStart(45));
+  }
 }
+
+formatFlightInfo(flights);
