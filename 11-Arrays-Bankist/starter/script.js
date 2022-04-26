@@ -62,7 +62,7 @@ const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
 const displayMovements = (movements, sort = false) => {
-  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements; 
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
   containerMovements.innerHTML = '';
   movs.forEach((mov, i) => {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
@@ -187,17 +187,16 @@ btnLoan.addEventListener('click', e => {
   } else {
     console.log('FALSE');
   }
-  inputLoanAmount.value = ''
+  inputLoanAmount.value = '';
 });
 
-let sorted = false; 
+let sorted = false;
 
-btnSort.addEventListener('click', (e) => {
+btnSort.addEventListener('click', e => {
   e.preventDefault();
   displayMovements(currentAccount.movements, sorted);
   sorted = !sorted;
-})
-
+});
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -350,44 +349,45 @@ const dogs = [
   { weight: 22, curFood: 250, owners: ['Alice', 'Bob'] },
   { weight: 8, curFood: 200, owners: ['Matilda'] },
   { weight: 13, curFood: 275, owners: ['Sarah', 'John'] },
-  { weight: 32, curFood: 340, owners: ['Michael'] }
+  { weight: 32, curFood: 340, owners: ['Michael'] },
 ];
 
-dogs.forEach(dog => dog.recommendedFood = Math.trunc(dog.weight ** 0.75 * 28));
+dogs.forEach(
+  dog => (dog.recommendedFood = Math.trunc(dog.weight ** 0.75 * 28))
+);
 const saraDog = dogs.find(dog => dog.owners.some(owner => owner === 'Sarah'));
-if(saraDog.curFood < saraDog.recommendedFood * 0.9) {
-  console.log('it is eating too little')
+if (saraDog.curFood < saraDog.recommendedFood * 0.9) {
+  console.log('it is eating too little');
 } else if (saraDog.curFood > saraDog.recommendedFood * 1.1) {
-  console.log('it is eating too much')
+  console.log('it is eating too much');
 }
 
-const ownersEatTooMuch = [];
-const ownersEatTooLittle = [];
+const ownersEatTooMuch = dogs
+  .filter(dog => dog.curFood > dog.recommendedFood)
+  .flatMap(dog => dog.owners);
+const ownersEatTooLittle = dogs
+  .filter(dog => dog.curFood < dog.recommendedFood)
+  .flatMap(dog => dog.owners);
 
-const ownersEatTooMuchStr = [];
-const ownersEatTooLittleStr = [];
+console.log(`${ownersEatTooMuch.join(' and ')}'s dogs eat too much!`);
+console.log(`${ownersEatTooLittle.join(' and ')}'s dogs eat too little!`);
 
-const owners = dogs.flatMap(dog => dog.owners);
-owners.forEach(owner => {
-  const dog = dogs.find(dog => dog.owners.some(ow => ow === owner));
-  if(dog.curFood < dog.recommendedFood * 0.9) {
-    ownersEatTooLittle.push(dog)
-    ownersEatTooMuchStr.push(owner)
-  } else if (dog.curFood > dog.recommendedFood * 1.1) {
-    ownersEatTooMuch.push(dog)
-    ownersEatTooLittleStr.push(owner)
-  }
-})
+console.log(dogs.some(dog => dog.curFood === dog.recommendedFood));
 
+console.log(
+  dogs.some(
+    dog =>
+      dog.curFood > dog.recommendedFood * 0.9 &&
+      dog.curFood < dog.recommendedFood * 1.1
+  )
+);
 
-console.log(`${ownersEatTooMuchStr.join(' and ')}'s dogs eat too much!`)
-console.log(`${ownersEatTooLittleStr.join(' and ')}'s dogs eat too little!`)
- 
+console.log(
+  dogs.filter(
+    dog =>
+      dog.curFood > dog.recommendedFood * 0.9 &&
+      dog.curFood < dog.recommendedFood * 1.1
+  )
+);
 
-console.log(dogs.some(dog => dog.curFood === dog.recommendedFood))
-
-console.log(dogs.some(dog => dog.curFood > dog.recommendedFood * 0.9 && dog.curFood < dog.recommendedFood * 1.1))
-
-console.log(dogs.filter(dog => dog.curFood > dog.recommendedFood * 0.9 && dog.curFood < dog.recommendedFood * 1.1))
-
-console.log(dogs.slice().sort((a, b) => b.recommendedFood - a.recommendedFood))
+console.log(dogs.slice().sort((a, b) => b.recommendedFood - a.recommendedFood));
